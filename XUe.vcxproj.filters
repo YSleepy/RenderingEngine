@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>qml;cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>qrc;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+    </Filter>
+    <Filter Include="Source Files\ExampleItem">
+      <UniqueIdentifier>{274600e5-a628-46a6-b7ef-73a4ebe9be52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ExampleItem">
+      <UniqueIdentifier>{219bbf5e-44da-4073-bd69-f8bd55ced957}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ExampleItem\Base">
+      <UniqueIdentifier>{de00c014-6d70-4517-abea-3e768c22ab72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ExampleItem\Base">
+      <UniqueIdentifier>{604af2ae-5671-4c5f-9b2f-a844a9af9ae7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{e25fe8bf-8bea-4c8e-a870-04be88016988}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{0fe965d2-b18f-482f-b03c-77f899eb5e1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RenderCore">
+      <UniqueIdentifier>{637c5ec2-29ae-4673-acb2-20f0f1d9c021}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RenderCore">
+      <UniqueIdentifier>{aa723824-6264-4196-8e04-db79a19426d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ExampleItem\World">
+      <UniqueIdentifier>{7c11d43f-560d-46d4-b343-69a3c23221dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ExampleItem\World">
+      <UniqueIdentifier>{ec7a91fd-ac82-4c68-9135-013fa3b16a7f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExampleItem\Base\ExampleFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExampleItem\Base\RenderExample.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExampleItem\CubeExample.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExampleItem\TriangleExample.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExampleItem\TriangularPyramid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RenderCore\XShader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RenderCore\XUeRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\XListWidgetItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\XUeMainWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\ExampleItem\Base\ExampleFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ExampleItem\Base\RenderExample.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ExampleItem\CubeExample.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ExampleItem\TriangleExample.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ExampleItem\TriangularPyramid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\RenderCore\XShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\RenderCore\XUeRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UI\XListWidgetItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="include\UI\XUeMainWindow.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+</Project>
