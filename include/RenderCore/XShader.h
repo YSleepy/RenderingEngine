@@ -6,9 +6,13 @@
 class XShader: public QOpenGLFunctions_3_3_Core
 {
 public:
-	XShader();
+	XShader(const char* vertexShaderSource, const char* fragmentShaderSource);
+	XShader(QString vertexShaderPath, QString fragmentShaderPath);
 	~XShader();
 	GLuint CreateShaderProgram(const char* vertexShaderSource, const char* fragmentShaderSource);
+	GLuint CreateShaderProgram(QString vertexShaderPath, QString fragmentShaderPath);
+	bool IsValid();
+	GLuint GetShaderProgramID();
 	void Use();
 	void UnUse();
 	void DeleteShaderProgram();
@@ -21,5 +25,5 @@ public:
 	void SetVec2(const char* name, const QVector2D& vec);
 
 private:
-	GLuint shaderProgramID;
+	GLuint shaderProgramID = 0;
 };

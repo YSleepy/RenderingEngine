@@ -1,9 +1,15 @@
 #include "XShader.h"
 
-XShader::XShader()
-	:shaderProgramID(0)
+#include <QFile>
+
+XShader::XShader(const char* vertexShaderSource, const char* fragmentShaderSource)
 {
-	
+	CreateShaderProgram(vertexShaderSource, fragmentShaderSource);
+}
+
+XShader::XShader(QString vertexShaderPath, QString fragmentShaderPath)
+{
+	CreateShaderProgram(vertexShaderPath, fragmentShaderPath);
 }
 
 XShader::~XShader()
@@ -68,6 +74,49 @@ GLuint XShader::CreateShaderProgram(const char* vertexShaderSource, const char* 
 	}
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
+	return shaderProgramID;
+}
+
+GLuint XShader::CreateShaderProgram(QString vertexShaderPath, QString fragmentShaderPath)
+{
+	QFile vertexShaderFile(vertexShaderPath);
+	if (!vertexShaderFile.exists())
+	{
+		qDebug() << "文件不存在:" << vertexShaderPath;
+		return 0;
+	}
+	vertexShaderFile.open(QIODevice::ReadOnly | QIODevice::Text);
+	if (!vertexShaderFile.isOpen())
+	{
+		qDebug() << "文件打开失败:" << vertexShaderPath;
+		return 0;
+	}
+	QFile fragmentShaderFile(fragmentShaderPath);
+	if (!fragmentShaderFile.exists())
+	{
+		qDebug() << "文件不存在:" << fragmentShaderPath;
+		return 0;
+	}
+	fragmentShaderFile.open(QIODevice::ReadOnly | QIODevice::Text);
+	if (!fragmentShaderFile.isOpen())
+	{
+		qDebug() << "文件打开失败:" << fragmentShaderPath;
+		return 0;
+	}
+	QByteArray vertexShaderArray = vertexShaderFile.readAll();
+	QByteArray fragmentShaderArray = fragmentShaderFile.readAll();
+	const char* vertexShaderSource = vertexShaderArray.data();
+	const char* fragmentShaderSource = fragmentShaderArray.data();
+	CreateShaderProgram(vertexShaderSource, fragmentShaderSource);
+}
+
+bool XShader::IsValid()
+{
+	return shaderProgramID != 0;
+}
+
+GLuint XShader::GetShaderProgramID()
+{
 	return shaderProgramID;
 }
 

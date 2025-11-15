@@ -2,6 +2,8 @@
 
 #include <QOpenGLFunctions_3_3_Core>
 
+#include "XShader.h"
+
 class RenderExample : public QOpenGLFunctions_3_3_Core
 {
 public:
@@ -20,6 +22,6 @@ protected:
 	GLuint vao;
 	GLuint vbo;
 	GLuint ebo;
-	GLuint shaderProgram;
+	XShader *shader;
 	bool initialized;
 };

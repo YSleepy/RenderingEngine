@@ -138,32 +138,41 @@ void TriangularPyramid::render(int widht, int hight)
 	model.rotate(rotationAngle, 1.0f, 1.0f, 0.0f);
 	//QMatrix4x4 mvp = projection * view * model;
 
-	glUseProgram(shaderProgram);
+	/*glUseProgram(shaderProgram);*/
+	shader->Use();
 	//shaderProgram->setUniformValue("mvp", mvp);
-	GLint pvmProjection = glGetUniformLocation(shaderProgram, "projection");
-	GLint pvmView = glGetUniformLocation(shaderProgram, "view");
-	GLint pvmModel = glGetUniformLocation(shaderProgram, "model");
-	if (pvmProjection == -1 || pvmView == -1 || pvmModel == -1) {
-		qWarning() << "Failed to get uniform location: 1";
-		glUseProgram(0);
-		return;
-	}
-	glUniformMatrix4fv(pvmProjection, 1, GL_FALSE, projection.constData());
-	glUniformMatrix4fv(pvmView, 1, GL_FALSE, view.constData());
-	glUniformMatrix4fv(pvmModel, 1, GL_FALSE, model.constData());
+	//GLint pvmProjection = glGetUniformLocation(shaderProgram, "projection");
+	//GLint pvmView = glGetUniformLocation(shaderProgram, "view");
+	//GLint pvmModel = glGetUniformLocation(shaderProgram, "model");
+	//if (pvmProjection == -1 || pvmView == -1 || pvmModel == -1) {
+	//	qWarning() << "Failed to get uniform location: 1";
+	//	glUseProgram(0);
+	//	return;
+	//}
+	//glUniformMatrix4fv(pvmProjection, 1, GL_FALSE, projection.constData());
+	//glUniformMatrix4fv(pvmView, 1, GL_FALSE, view.constData());
+	//glUniformMatrix4fv(pvmModel, 1, GL_FALSE, model.constData());
 
-	GLint lightPosLocation = glGetUniformLocation(shaderProgram, "lightPos");
-	GLint viewPosLocation = glGetUniformLocation(shaderProgram, "viewPos");
-	GLint useLightingLocation = glGetUniformLocation(shaderProgram, "useLighting");
-	if (lightPosLocation == -1 || viewPosLocation == -1 || useLightingLocation == -1)
-	{
-		qWarning() << "Failed to get uniform location: 2";
-		glUseProgram(0);
-		return;
-	}
-	glUniform3f(lightPosLocation, 2.0f, 2.0f, 2.0f);
-	glUniform3f(viewPosLocation, 0.0f, 0.0f, 5.0f);
-	glUniform1i(useLightingLocation, true);
+	shader->SetMat4("projection", projection);
+	shader->SetMat4("view", view);
+	shader->SetMat4("model", model);
+
+	//GLint lightPosLocation = glGetUniformLocation(shaderProgram, "lightPos");
+	//GLint viewPosLocation = glGetUniformLocation(shaderProgram, "viewPos");
+	//GLint useLightingLocation = glGetUniformLocation(shaderProgram, "useLighting");
+	//if (lightPosLocation == -1 || viewPosLocation == -1 || useLightingLocation == -1)
+	//{
+	//	qWarning() << "Failed to get uniform location: 2";
+	//	glUseProgram(0);
+	//	return;
+	//}
+	//glUniform3f(lightPosLocation, 2.0f, 2.0f, 2.0f);
+	//glUniform3f(viewPosLocation, 0.0f, 0.0f, 5.0f);
+	//glUniform1i(useLightingLocation, true);
+
+	shader->SetVec3("lightPos", QVector3D(2.0f, 2.0f, 2.0f));
+	shader->SetVec3("viewPos", QVector3D(0.0f, 0.0f, 5.0f));
+	shader->SetBool("useLighting", true);
 
 	glBindVertexArray(vao);
 	glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);

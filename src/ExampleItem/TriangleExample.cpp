@@ -48,22 +48,7 @@ void TriangleExample::init()
 		"{\n"
 		"   FragColor = vec4(ourColor, 1.0);\n"
 		"}\n";
-	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	glCompileShader(vertexShader);
-
-	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	glCompileShader(fragmentShader);
-
-	shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
-
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
-	//shaderProgram = createShaderProgram(vertexShaderSource, fragmentShaderSource);
+	CreateShaderProgram(vertexShaderSource, fragmentShaderSource);
 
 	// 创建缓冲区
 	glGenBuffers(1, &vbo);
@@ -101,15 +86,16 @@ void TriangleExample::render(int widht, int hight)
 	model.rotate(rotationAngle, 1.0f, 1.0f, 0.0f);
 	QMatrix4x4 mvp = projection * view * model;
 
-	glUseProgram(shaderProgram);
+	shader->Use();
 	//shaderProgram->setUniformValue("mvp", mvp);
-	GLint mvpLocation = glGetUniformLocation(shaderProgram, "mvp");
-	if (mvpLocation == -1) {
-		qWarning() << "Failed to get uniform location: mvp";
-		glUseProgram(0);
-		return;
-	}
-	glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, mvp.constData());
+	shader->SetMat4("mvp", mvp);
+	//GLint mvpLocation = glGetUniformLocation(shader->GetShaderProgramID(), "mvp");
+	//if (mvpLocation == -1) {
+	//	qWarning() << "Failed to get uniform location: mvp";
+	//	glUseProgram(0);
+	//	return;
+	//}
+	//glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, mvp.constData());
 	glBindVertexArray(vao);
 	glDrawArrays(GL_TRIANGLES, 0, vertexCount);
 	glBindVertexArray(vao);

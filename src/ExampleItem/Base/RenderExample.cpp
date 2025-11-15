@@ -1,6 +1,11 @@
 #include "RenderExample.h"
 
-RenderExample::RenderExample():vao(0), vbo(0), shaderProgram(0), initialized(false)
+RenderExample::RenderExample()
+	:vao(0),
+	vbo(0),
+	ebo(0),
+	shader(nullptr),
+	initialized(false)
 {
 }
 
@@ -12,11 +17,11 @@ RenderExample::~RenderExample()
 void RenderExample::cleanup()
 {
 	// 删除着色器程序
-	if (shaderProgram != 0) {
-		glDeleteProgram(shaderProgram);
-		shaderProgram = 0;
+	if (shader != nullptr)
+	{
+		delete shader;
+		shader = nullptr;
 	}
-
 	// 删除缓冲区对象
 	if (vbo != 0) {
 		glDeleteBuffers(1, &vbo);
@@ -42,20 +47,7 @@ void RenderExample::update()
 
 GLuint RenderExample::CreateShaderProgram(const char* vertexShaderSource, const char* fragmentShaderSource)
 {
-	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	glCompileShader(vertexShader);
-	
-	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	glCompileShader(fragmentShader);
+	shader = new XShader(vertexShaderSource, fragmentShaderSource);
 
-	shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
-
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
-	return shaderProgram;
+	return shader->GetShaderProgramID();
 }
